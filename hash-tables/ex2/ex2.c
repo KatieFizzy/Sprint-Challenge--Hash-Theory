@@ -8,6 +8,7 @@ char **reconstruct_trip(Ticket **tickets, int length)
 {
   HashTable *ht = create_hash_table(16);
   char **route = malloc(length * sizeof(char *));
+  int route_length = 0;
 
   /* PSUEDOCODE / LOGIC */
   //populate hashtable 
@@ -15,15 +16,14 @@ char **reconstruct_trip(Ticket **tickets, int length)
   hash_table_insert(ht, tickets[i]->source, tickets[i]->destination);
   }
 
-
-
   char* current_city = "NONE"; // set current city to start
+
  
   while(strcmp (current_city,"END") != 0) { // as long as current city hasn't reached 'end', continue to loop 
     current_city = hash_table_retrieve(ht,current_city);
-    for (int i = 0; i < length; i++) { // fill in route with entry for each city visited
-      route[i] = current_city; 
-    } 
+    route[route_length] = malloc(1024);
+    strcpy(*route+route_length,current_city);
+    route_length++;
   }
 
 
