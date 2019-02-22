@@ -15,27 +15,17 @@ char **reconstruct_trip(Ticket **tickets, int length)
   hash_table_insert(ht, tickets[i]->source, tickets[i]->destination);
   }
 
-  // change value of NONE to 'start' and 'end'
-  for (int i = 0; i < length; i++) {
-    if (tickets[i]->source == "NONE") {
-      tickets[i]->source = "START";
-    }
-    if (tickets[i]->destination == "NONE"){
-      tickets[i]->destination = "END";
-    }
-  }
 
-  char* current_city = tickets[0]->source; // set current city to start
+
+  char* current_city = "NONE"; // set current city to start
  
-  while(current_city != "END") { // as long as current city hasn't reached 'end', continue to loop 
+  while(strcmp (current_city,"END") != 0) { // as long as current city hasn't reached 'end', continue to loop 
     current_city = hash_table_retrieve(ht,current_city);
     for (int i = 0; i < length; i++) { // fill in route with entry for each city visited
-    route[i] = hash_table_retrieve(ht,current_city); 
+      route[i] = current_city; 
     } 
   }
 
-  current_city = "END"; // set current city to end
-  //append current_city to route // 
 
   return route;
 }
@@ -56,7 +46,7 @@ int main(void)
   Ticket **tickets = malloc(3 * sizeof(Ticket *));
 
   Ticket *ticket_1 = malloc(sizeof(Ticket));
-  ticket_1->source = "START";
+  ticket_1->source = "NONE";
   ticket_1->destination = "PDX";
   tickets[0] = ticket_1;
 
@@ -77,4 +67,12 @@ int main(void)
 #endif
 
 
- 
+   /*/ change value of NONE to 'start' and 'end'
+  for (int i = 0; i < length; i++) {
+    if (tickets[i]->source == "NONE") {
+      tickets[i]->source = "START";
+    }
+    if (tickets[i]->destination == "NONE"){
+      tickets[i]->destination = "END";
+    }
+  }*/
