@@ -7,26 +7,20 @@
 Answer *get_indices_of_item_weights(int *weights, int length, int limit)
 {
   HashTable *ht = create_hash_table(16);
-  /* PSUEDOCODE / LOGIC 
 
-  int value
-  int diff 
+  /* PSUEDOCODE / LOGIC */
+  
+  // create struct for return value 
+  Answer *pair= malloc(sizeof(Answer));
 
-  for the length of *limit* - 1 { //find first defined value 
-    if (h[i] != -1) 
-      {value = h[i]}
-
-    limit - value = diff // subtract it from the limit and look for the answer(diff)
-
-    if (h[diff] = -1)  // if diff isn't defined, go through loop again 
-      { continue }
-
-    return typdef struct Answer { // will return as soon as diff has a value 
-        int diff;
-        int value;
-    } Answer;
-
-    } */
+  for (int i = 0; i < length; i++) {  //find first defined value 
+    if (hash_table_retrieve(ht, limit-weights[i]) != -1) { // subtract it from the limit and look for the answer(diff)
+      pair->index_1 = i;
+      pair->index_2 = hash_table_retrieve(ht, limit-weights[i]);
+      return pair;
+    }
+    hash_table_insert(ht, weights[i],i);
+  }
 
   return NULL;
 }
