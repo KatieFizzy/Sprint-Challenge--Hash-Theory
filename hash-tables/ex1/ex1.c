@@ -7,8 +7,26 @@
 Answer *get_indices_of_item_weights(int *weights, int length, int limit)
 {
   HashTable *ht = create_hash_table(16);
+  /* PSUEDOCODE / LOGIC 
 
-  // YOUR CODE HERE
+  int value
+  int diff 
+
+  for the length of *limit* - 1 { //find first defined value 
+    if (h[i] != -1) 
+      {value = h[i]}
+
+    limit - value = diff // subtract it from the limit and look for the answer(diff)
+
+    if (h[diff] = -1)  // if diff isn't defined, go through loop again 
+      { continue }
+
+    return typdef struct Answer { // will return as soon as diff has a value 
+        int diff;
+        int value;
+    } Answer;
+
+    } */
 
   return NULL;
 }
